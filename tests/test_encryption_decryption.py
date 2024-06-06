@@ -16,4 +16,4 @@ def test_validity_of_decryption():
     encrypt(pl.col("plaintext"), key=key, nonce=nonce).alias("ciphertext")).with_columns(decrypt(pl.col("ciphertext"), key=key, nonce=nonce).alias("decrypted"))
 
 
-    assert df["plaintext"].series_equal(df_encrypted["decrypted"]), "Decrypted values do not match the original plaintext values."
+    assert (df["plaintext"] == df_encrypted["decrypted"]).all(), "Decrypted values do not match the original plaintext values."
