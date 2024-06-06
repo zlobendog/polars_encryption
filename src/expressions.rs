@@ -3,7 +3,6 @@ use polars::prelude::*;
 use pyo3_polars::derive::polars_expr;
 use aes_gcm_siv::{aead::{Aead, KeyInit}, Aes256GcmSiv, Nonce};
 use serde::Deserialize;
-use base64;
 use std::fmt::Write;
 
 #[derive(Deserialize)]
@@ -23,7 +22,7 @@ fn encrypt(inputs: &[Series], kwargs: KeyKwargs) -> PolarsResult<Series> {
         let encrypted_data = cipher
             .encrypt(nonce, value.as_bytes())
             .expect("encryption should not fail");
-        let encoded_data = base64::encode(&encrypted_data);
+        let encoded_data = base64::encode(encrypted_data);
         write!(output, "{}", encoded_data).unwrap();
     });
 
