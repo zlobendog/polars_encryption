@@ -152,7 +152,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
-      id-token: write  # IMPORTANT: mandatory for trusted publishing
+      id-token: ${{ PYPI_TOKEN }}  # IMPORTANT: mandatory for trusted publishing
     steps:
       - uses: actions/download-artifact@v3
         with:
