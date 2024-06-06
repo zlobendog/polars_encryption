@@ -30,7 +30,6 @@ permissions:
 # Make sure CI fails on all warnings, including Clippy lints
 env:
   RUSTFLAGS: "-Dwarnings"
-  TOKEN: ${{ secrets.PYPI_TOKEN }}
 
 jobs:
   linux_tests:
@@ -153,7 +152,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
-      id-token: ${{ env.TOKEN }}  # IMPORTANT: mandatory for trusted publishing
+      id-token: ${{ secrets.PYPI_TOKEN }}  # IMPORTANT: mandatory for trusted publishing
     steps:
       - uses: actions/download-artifact@v3
         with:
