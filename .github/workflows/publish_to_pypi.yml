@@ -151,8 +151,6 @@ jobs:
     needs: [linux, windows, macos, sdist]
     runs-on: ubuntu-latest
     environment: pypi
-    env:
-      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
@@ -163,5 +161,5 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: upload
-          args: --non-interactive --skip-existing * --pypi-token $PYPI_TOKEN
+          args: --non-interactive --skip-existing *
 
