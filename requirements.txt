@@ -1,5 +1,5 @@
-polars
-maturin
+polars==1.19.0
+maturin==1.8.1
 ruff
 pytest
 mypy

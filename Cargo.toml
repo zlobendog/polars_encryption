@@ -1,6 +1,6 @@
 [package]
 name = "polars-encryption"
-version = "0.1.0"
+version = "0.1.5"
 edition = "2021"
 
 [lib]
@@ -8,12 +8,12 @@ name = "polars_encryption"
 crate-type= ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.20.0", features = ["extension-module", "abi3-py38"] }
-pyo3-polars = { version = "0.12.0", features = ["derive"] }
-serde = { version = "1", features = ["derive"] }
-polars = { version = "0.38.3", features =["strings", "object", "dtype-struct"] }
+pyo3 = { version = "^0.22", features = ["extension-module", "abi3-py38"] }
+pyo3-polars = { version = "0.19.0", features = ["derive"] }
+serde = { version = "1.0.217", features = ["derive"] }
+polars = { version = "0.45.1", features =["strings", "object", "dtype-struct"] }
 aes-gcm-siv = "0.11.1"
-base64 = "0.13.0"
+base64 = "0.22.1"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 jemallocator = { version = "0.5", features = ["disable_initial_exec_tls"] }

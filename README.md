@@ -2,6 +2,8 @@
 
 This is a plugin to extend Polars with encryption algorithm **AES-GSM-SIV** written in Rust for a blazing fast (c) performance.
 
+# Changelog
+08-01-2025: updated for latest versions of Polars and rust
 
 
 # Sources
