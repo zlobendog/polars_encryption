@@ -1,4 +1,5 @@
 #![allow(clippy::unused_unit)]
+use polars::prelude::*;
 use pyo3_polars::derive::polars_expr;
 use serde::Deserialize;
 use base64::{engine::general_purpose, Engine as _};
