@@ -1,5 +1,4 @@
 #![allow(clippy::unused_unit)]
-use polars::prelude::*;
 use pyo3_polars::derive::polars_expr;
 use serde::Deserialize;
 use base64::{engine::general_purpose, Engine as _};
@@ -22,7 +21,7 @@ fn encrypt(inputs: &[Series], kwargs: KeyKwargs) -> PolarsResult<Series> {
     let encrypted_values = ca.apply(|value: Option<&str>| {
         value.map(|v| {
             let encrypted_data = cipher
-                .encrypt(&nonce, v.as_bytes())
+                .encrypt(nonce, v.as_bytes())
                 .expect("encryption should not fail");
             Cow::Owned(general_purpose::STANDARD.encode(encrypted_data)) // Wrap in Cow::Owned
         })
@@ -46,7 +45,7 @@ fn decrypt(inputs: &[Series], kwargs: KeyKwargs) -> PolarsResult<Series> {
             let encrypted_data = general_purpose::STANDARD.decode(v)
                 .expect("base64 decoding should not fail");
             let decrypted_data = cipher
-                .decrypt(&nonce, encrypted_data.as_ref())
+                .decrypt(nonce, encrypted_data.as_ref())
                 .expect("decryption should not fail");
             let decrypted_string = String::from_utf8(decrypted_data)
                 .expect("utf8 conversion should not fail");
